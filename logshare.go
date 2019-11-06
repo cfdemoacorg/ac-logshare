@@ -193,7 +193,7 @@ func (c *Client) request(u *url.URL) (*Meta, error) {
 	req.Header = cloneHeader(c.headers)
 	//req.Header.Set("X-Auth-Key", c.apiKey)
 	var bearer = "Bearer " + c.apiKey
-	req.Header.Add("Authorization", bearer)
+	req.Header.Set("Authorization", bearer)
 	req.Header.Set("X-Auth-Email", c.apiEmail)
 	req.Header.Set("Accept", "application/json")
 
