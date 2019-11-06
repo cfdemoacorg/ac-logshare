@@ -142,7 +142,9 @@ func (api *API) request(method, uri string, reqBody io.Reader, authType int) (*h
 	// Apply any user-defined headers first.
 	req.Header = cloneHeader(api.headers)
 	if authType&AuthKeyEmail != 0 {
-		req.Header.Set("X-Auth-Key", api.APIKey)
+		//req.Header.Set("X-Auth-Key", api.APIKey)
+		var bearer = "Bearer " + api.APIKey
+		req.Header.Set("Authorization", bearer)
 		req.Header.Set("X-Auth-Email", api.APIEmail)
 	}
 	if authType&AuthUserService != 0 {
